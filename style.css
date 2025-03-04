@@ -1,42 +1,96 @@
-body {
+* {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
-    background-color: #f0f0f0; /* Fallback background */
+    box-sizing: border-box;
 }
 
-.wrapper {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Set height to viewport height */
-    overflow-x: hidden; /* Hide horizontal scrollbar */
-    overflow-y: auto; /* Enable vertical scrollbar */
-}
-
-.parallax {
-    position: fixed; /* Keep SVG fixed during scrolling */
+/* Fixed welcome section */
+section {
+    position: fixed;
+    z-index: 10; /* Highest z-index to be above clouds */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
     top: 0;
     left: 0;
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.7),
+        -2px -2px 4px rgba(0, 0, 0, 0.7);
+    transition: transform 0.2s ease-out; /* Add smooth transition */
+}
+
+/* Add a container for text to ensure smooth movement */
+section .text-container {
+    transform-style: preserve-3d;
+    will-change: transform; /* Optimize performance */
+    transition: transform 0.2s ease-out;
+}
+
+section h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+section p {
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+/* Fixed cloud positions */
+#cloud-floor,
+#cloud-floor-2,
+#clouds,
+#front-cloud {
+    position: fixed;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Place SVG behind other content */
-     pointer-events: none; /* Allows interaction with content behind the SVG */
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    transition: transform 0.1s ease-out;
+}
 
-}
-#scroll-trigger {
-    position: relative; /* Or absolute, depending on your layout */
-    z-index: 1; /* Ensure the trigger is above the SVG */
-}
-.parallax image{
-  position: absolute;
-  top:0;
-  left:0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+#cloud-floor { z-index: 3; }
+#cloud-floor-2 { z-index: 4; }
+#clouds { z-index: 5; }
+#front-cloud { z-index: 6; }
 
+/* Mountain scene container */
+.parallax-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    margin-top: 100vh;
+    z-index: 1;
 }
-#forest-scene, #desert-scene, #city-scene{
-   width: 100%;
-  height: 100%;
+
+/* Mountain scene elements */
+.parallax-container img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#sky { z-index: 1; }
+#moon { z-index: 2; }
+#back-mountain { 
+    z-index: 3;
+    bottom: 0;
+}
+#front-mountain { 
+    z-index: 4;
+    bottom: 0;
+}
+#cloud-single { 
+    z-index: 5;
+    right: 0;
 }
