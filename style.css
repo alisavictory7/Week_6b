@@ -4,46 +4,44 @@
     box-sizing: border-box;
 }
 
-/* Fixed welcome section */
-section {
+/* Welcome section with clouds */
+.welcome-container {
     position: fixed;
-    z-index: 10; /* Highest z-index to be above clouds */
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
     top: 0;
     left: 0;
-    text-shadow: 
-        2px 2px 4px rgba(0, 0, 0, 0.7),
-        -2px -2px 4px rgba(0, 0, 0, 0.7);
-    transition: transform 0.2s ease-out; /* Add smooth transition */
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
 }
 
-/* Add a container for text to ensure smooth movement */
-section .text-container {
-    transform-style: preserve-3d;
-    will-change: transform; /* Optimize performance */
-    transition: transform 0.2s ease-out;
+section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 12;
 }
 
-section h2 {
+.text-container {
+    text-align: center;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.text-container h2 {
     font-size: 3rem;
     margin-bottom: 1rem;
-    font-weight: bold;
 }
 
-section p {
+.text-container p {
     font-size: 1.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
 }
 
-/* Fixed cloud positions */
+/* Welcome clouds */
 #cloud-floor,
 #cloud-floor-2,
 #clouds,
@@ -52,45 +50,48 @@ section p {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    top: 0;
-    left: 0;
-    transition: transform 0.1s ease-out;
+    z-index: 11;
 }
 
-#cloud-floor { z-index: 3; }
-#cloud-floor-2 { z-index: 4; }
-#clouds { z-index: 5; }
-#front-cloud { z-index: 6; }
-
-/* Mountain scene container */
-.parallax-container {
+/* Scene containers */
+.parallax-container,
+.parallax-container-2,
+.parallax-container-3 {
     position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    margin-top: 100vh;
-    z-index: 1;
 }
 
-/* Mountain scene elements */
-.parallax-container img {
+.parallax-container {
+    margin-top: 100vh;  /* Start after welcome section */
+}
+
+.parallax-container-2 {
+    margin-top: 0;      /* Will naturally flow after first container */
+}
+
+.parallax-container-3 {
+    margin-top: 0;      /* Will naturally flow after second container */
+}
+
+/* Scene elements */
+.parallax-container img,
+.parallax-container-2 img,
+.parallax-container-3 img {
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-#sky { z-index: 1; }
-#moon { z-index: 2; }
-#back-mountain { 
-    z-index: 3;
-    bottom: 0;
-}
-#front-mountain { 
-    z-index: 4;
-    bottom: 0;
-}
-#cloud-single { 
-    z-index: 5;
-    right: 0;
+
+#floating-woman {
+    position: fixed;
+    width: 20vw;
+    height: auto;
+    left: calc(50% - 15vw); /* Centers horizontally then shifts left */
+    bottom: -100vh; /* Starts below viewport */
+    z-index: 20;
+    transition: bottom 0.3s ease-out;
 }
